@@ -1,4 +1,4 @@
-
+//Spørsmål til survey
 var sporsmal = ["IMI er den beste klassen", "IMI har verst snitt", "Uy er sinnsykt sexy", "Pusekatter er stygge"]
 
 var allChecked = true;
@@ -27,6 +27,7 @@ for(i=0;i<sporsmal.length;i++){
     document.body.appendChild(header);
 
     var form = document.createElement("form")
+    //Lager uenig/uenig antall avhengig av hvor mange spørsmål det er.
     for(z=0;z<sporsmal.length;z++){
 
         var radioFalse = document.createElement("input");
@@ -69,7 +70,7 @@ for(i=0;i<sporsmal.length;i++){
 }
 
 
-
+//Lager knapper med funksjoner
 
 var svar = document.createElement("button")
 svar.innerHTML = "Svar";
@@ -86,15 +87,14 @@ location.reload();
 
 var ele = document.querySelectorAll('input[type="radio"]');
 
-
-
-
     svar.addEventListener("click", (e) => {
+      //For å telle brukere
         antallBrukere ++
 
         var brukere = document.querySelector("#antall")
         brukere.innerHTML = "Antall brukere som har svart: " + antallBrukere;
 
+        // For å sjekke om enig blir tatt, om den blir tatt så plusser den til verdien.
         if(allChecked){
             
 
@@ -125,7 +125,7 @@ resultat.innerHTML = "Vis resultat"
 
 
 
-
+//Lager diagram
 resultat.addEventListener("click", (e) => {
 
     var canvas = document.createElement("canvas");
@@ -133,16 +133,19 @@ resultat.addEventListener("click", (e) => {
     canvas.style.cssText = "width: 100%; max-width: 700px";
     document.body.appendChild(canvas)
 
-    var xValues = ["IMI er den beste klassen", "IMI har verst snitt", "Uy er sinnsyk sexy", "Pusekatter er stygge"];
+    //Spørsmålene som står der
+  var xValues = ["IMI er den beste klassen", "IMI har verst snitt", "Uy er sinnsyk sexy", "Pusekatter er stygge"];
 
+  //Verdiene printes i prosent
   var yValues = [(spm1/antallBrukere)*100, (spm2/antallBrukere)*100, (spm3/antallBrukere)*100, (spm4/antallBrukere)*100];
 
+  //Farger på diagramet
   var barColors = ["red", "green","blue","orange","brown"];
 
  
-
+//Lager en chart på canvas som er lagd ovenfor
   new Chart("myChart", {
-
+    //Hva slags type
     type: "bar",
 
     data: {
@@ -172,7 +175,7 @@ resultat.addEventListener("click", (e) => {
       },
 
       scales: {
-
+//Hvordan infoet displayes i Y aksen.
         yAxes:[{
 
           ticks:{
