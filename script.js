@@ -1,6 +1,7 @@
 //Spørsmål til survey
 var sporsmal = ["IMI er den beste klassen", "IMI har verst snitt", "Uy er sinnsykt sexy", "Pusekatter er stygge"]
 
+//Settes som true sånn at vi kan sjekke om spørsmålene er svart eller ikke
 var allChecked = true;
 var spm1 = 0;
 var spm2 = 0;
@@ -14,11 +15,12 @@ var antallBrukere = 0;
 
 function undersokelse(){
 
-
+    //Antall brukere
     var antallP = document.createElement("p");
     antallP.id = "antall";
     document.body.appendChild(antallP) 
 
+    //For loop for spørsmål, den går utifra spørsmål som er skrevet i for-loopen
 for(i=0;i<sporsmal.length;i++){
 
     var header = document.createElement("h2");
@@ -33,6 +35,7 @@ for(i=0;i<sporsmal.length;i++){
     //Lager uenig/uenig antall avhengig av hvor mange spørsmål det er.
     for(z=0;z<sporsmal.length;z++){
 
+        //Selve knappen for false og true
         var radioFalse = document.createElement("input");
         radioFalse.type = "radio";
         radioFalse.value = "False";
@@ -43,6 +46,7 @@ for(i=0;i<sporsmal.length;i++){
         radioTrue.value = "True";
         radioTrue.name = "svar"
 
+        //Tekst der det står false og true
         var labelFalse = document.createElement("label")
         labelFalse.htmlFor = "False"
         labelFalse.innerHTML = "Uenig";
@@ -54,7 +58,7 @@ for(i=0;i<sporsmal.length;i++){
 
     }
     
-
+ 
     labelTrue.appendChild(radioTrue);
     labelFalse.appendChild(radioFalse);
     form.appendChild(labelFalse)
@@ -67,7 +71,7 @@ for(i=0;i<sporsmal.length;i++){
 
 
 }
-
+//Div for å kunne plassere ulike ting hvor enn jeg vil, denne divven brukes til grafen av undersøkelsen
 var divSvar = document.createElement("div");
 
 //Lager knapper med funksjoner
@@ -76,7 +80,7 @@ var svar = document.createElement("button")
 svar.innerHTML = "Svar";
 divSvar.appendChild(svar)
 
-
+//Lager en reset knapp som at alt kan resettes.
 var reset = document.createElement("button")
 reset.innerHTML = "Reset";
 divSvar.appendChild(reset);
@@ -85,16 +89,16 @@ reset.addEventListener("click", (e) =>{
 location.reload();
 
 })
+//Henter inn alle radio elementer sånn at jeg kan hente inn verdi eller sjekke om de er huket av eller ikke
 var ele = document.querySelectorAll('input[type="radio"]');
 
-
-
-    
-
+  
+    //Teller antall brukere som svarte hva, om 2 personer svarer forskjellig så viser den statistikk på hvem som mente hva
     svar.addEventListener("click", (e) => {
       //For å telle brukere
         antallBrukere ++
 
+        //Teller hvor mange brukere som svarte
         var brukere = document.querySelector("#antall")
         brukere.innerHTML = "Antall brukere som har svart: " + antallBrukere;
 
@@ -200,8 +204,6 @@ resultat.addEventListener("click", (e) => {
 });
 
 document.body.appendChild(divSvar);
-document.body.appendChild(divFarge);
-document.body.appendChild(divLag);
 
 }
 //Oppdrag utvikling kode
@@ -309,6 +311,8 @@ divLag.appendChild(lagElementInput);
 divLag.appendChild(lagElement);
 
 
+document.body.appendChild(divFarge);
+document.body.appendChild(divLag);
 
 
 
