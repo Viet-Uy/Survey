@@ -197,32 +197,29 @@ resultat.addEventListener("click", (e) => {
 
   });
 
-
-
 });
 
 document.body.appendChild(divSvar);
 document.body.appendChild(divFarge);
 document.body.appendChild(divLag);
 
-
-
-
 }
-
+//Oppdrag utvikling kode
 //Nytt navn, farge og diverse nye kriterier
 
+//Overskrift for navn
 var divInfo = document.createElement("div");
 var navn = document.createElement("h2");
 navn.innerHTML = "Navn: "
 divInfo.appendChild(navn);
 
 
-
+//Skriv navn inputbox
 var navnBoks = document.createElement("input");
 navnBoks.placeholder = "Skriv navn her";
 divInfo.appendChild(navnBoks);
 
+//Trykk på enter for å bytte navn
 var enterInput = document.createElement("button");
 enterInput.innerHTML = "Enter";
 enterInput.style.margin = "0px";
@@ -233,17 +230,14 @@ enterInput.addEventListener("click",(e) =>{
   navn.innerHTML = "Navn: " + navnBoks.value;
   
   })
-
+//Append button i divInfo
 divInfo.appendChild(enterInput);
-
-
 
 document.body.appendChild(divInfo);
 
 
-
+//Lager hele fargeseksjonen, div, button, inputbox
 var divFarge = document.createElement("div");
-
 
 var forandreFarge = document.createElement("button");
 forandreFarge.innerHTML = "Endre farge"
@@ -253,18 +247,17 @@ var headerFarge = document.createElement("h3")
 headerFarge.innerHTML = "Skriv en farge bakgrunnsfargen din skal endres til"
 divFarge.appendChild(headerFarge);
 
-
-
 divFarge.appendChild(inputBoks);
 divFarge.appendChild(forandreFarge);
 
 
 
-
+//Lager ny div for det nye elementet du valgt
 var divLag = document.createElement("div");
 
 var count = 1;
 
+//Forandrer farge på body
 forandreFarge.addEventListener("click", (e) =>{
   count++
 
@@ -281,7 +274,7 @@ forandreFarge.addEventListener("click", (e) =>{
 
 })
 
-
+//Valgene du har for elementer du skal lage
 var optionvalues = ["h1", "h2", "h3"]
 
 var select = document.createElement("select");
@@ -289,12 +282,11 @@ select.setAttribute("id", "select1")
 var divSelect = document.createElement("div");
 
 
-
+//For loop for selve elementet
 for(i=0;i<optionvalues.length;i++){
   var optSelect = document.createElement("option")
   select.appendChild(optSelect)
   optSelect.innerHTML = optionvalues[i]
-  optSelect.setAttribute("id", "option" + [i])
 
 }
 
@@ -302,6 +294,7 @@ var lagElement = document.createElement("button");
 lagElement.innerHTML = "Enter"
 var lagElementInput = document.createElement("input");
 
+//Henter inn id til select og lager elementet du vil lage
 lagElement.addEventListener("click", (e) =>{
   selectElement = document.querySelector('#select1');
   var nyLagd = document.createElement(selectElement.value)
@@ -310,6 +303,7 @@ lagElement.addEventListener("click", (e) =>{
 
 })
 
+//Appender alt til divLag
 divLag.appendChild(select);
 divLag.appendChild(lagElementInput);
 divLag.appendChild(lagElement);
