@@ -30,9 +30,15 @@ for(i=0;i<sporsmal.length;i++){
     header.appendChild(content);
 
     document.body.appendChild(header);
+    //----------------------------------------------------------------------------
 
-    var form = document.createElement("form")
+   
+
+
+
+
     //Lager uenig/uenig antall avhengig av hvor mange spørsmål det er.
+    var form = document.createElement("form")
     for(z=0;z<sporsmal.length;z++){
 
         //Selve knappen for false og true
@@ -51,26 +57,21 @@ for(i=0;i<sporsmal.length;i++){
         labelFalse.htmlFor = "False"
         labelFalse.innerHTML = "Uenig";
 
-
         var labelTrue = document.createElement("label")
         labelTrue.htmlFor = "True"
         labelTrue.innerHTML = "Enig"
-
     }
-    
- 
     labelTrue.appendChild(radioTrue);
     labelFalse.appendChild(radioFalse);
     form.appendChild(labelFalse)
     form.appendChild(labelTrue)
     header.appendChild(form);
-
     document.body.appendChild(form)
-
-
-
-
 }
+//---------------------------------------------------------------------------------------
+
+
+
 //Div for å kunne plassere ulike ting hvor enn jeg vil, denne divven brukes til grafen av undersøkelsen
 var divSvar = document.createElement("div");
 
@@ -89,6 +90,9 @@ reset.addEventListener("click", (e) =>{
 location.reload();
 
 })
+//-----------------------------------------------------------------------------------------------------
+
+
 //Henter inn alle radio elementer sånn at jeg kan hente inn verdi eller sjekke om de er huket av eller ikke
 var ele = document.querySelectorAll('input[type="radio"]');
 
@@ -101,7 +105,7 @@ var ele = document.querySelectorAll('input[type="radio"]');
         //Teller hvor mange brukere som svarte
         var brukere = document.querySelector("#antall")
         brukere.innerHTML = "Antall brukere som har svart: " + antallBrukere;
-
+        //------------------------------------------------------------------
 
 
         // For å sjekke om enig blir tatt, om den blir tatt så plusser den til verdien.
@@ -124,15 +128,17 @@ var ele = document.querySelectorAll('input[type="radio"]');
         }
     })
 
-// Lager knapp
+        //--------------------------------------------------------------------------------
+
+// Lager knapp som du kan addEventListener til rett under
 var resultat = document.createElement("button")
 resultat.innerHTML = "Vis resultat"
 divSvar.appendChild(resultat);
+//-------------------------------------------------------
 
 
 
-
-//Lager diagram
+//Her lages det diagrammet med farger osv.
 resultat.addEventListener("click", (e) => {
 
     var canvas = document.createElement("canvas");
@@ -206,41 +212,39 @@ resultat.addEventListener("click", (e) => {
 document.body.appendChild(divSvar);
 
 }
-//Oppdrag utvikling kode
-//Nytt navn, farge og diverse nye kriterier
+//-----------------------------------------------------------------------------------------------------------------------
 
-//Overskrift for navn
+
+//Nedenfor her er kode for å lage navn, endre farge og forskjellige elementer. Alt det nedefor er for utvikling oppdraget.
+
+
+//Her lages hele funksjonnen for hvordan man skriver inn navn til hvordan navnet displayes ----------------------------------------
 var divInfo = document.createElement("div");
 var navn = document.createElement("h2");
 navn.innerHTML = "Navn: "
 divInfo.appendChild(navn);
-
-
 //Skriv navn inputbox
 var navnBoks = document.createElement("input");
 navnBoks.placeholder = "Skriv navn her";
 divInfo.appendChild(navnBoks);
-
 //Trykk på enter for å bytte navn
 var enterInput = document.createElement("button");
 enterInput.innerHTML = "Enter";
 enterInput.style.margin = "0px";
 enterInput.style.width = "60px";
-
 enterInput.addEventListener("click",(e) =>{
-
   navn.innerHTML = "Navn: " + navnBoks.value;
-  
   })
+
+//--------------------------------------------------------------------------------------------------------
+
 //Append button i divInfo
 divInfo.appendChild(enterInput);
-
 document.body.appendChild(divInfo);
 
 
-//Lager hele fargeseksjonen, div, button, inputbox
+//Lager hele fargeseksjonen, div, button, inputbox. Her lages funksjonen og elementene for å endre farge til body-------------
 var divFarge = document.createElement("div");
-
 var forandreFarge = document.createElement("button");
 forandreFarge.innerHTML = "Endre farge"
 var inputBoks = document.createElement("input");
@@ -248,49 +252,37 @@ inputBoks.placeholder = "Skriv farge her";
 var headerFarge = document.createElement("h3")
 headerFarge.innerHTML = "Skriv en farge bakgrunnsfargen din skal endres til"
 divFarge.appendChild(headerFarge);
-
 divFarge.appendChild(inputBoks);
 divFarge.appendChild(forandreFarge);
-
-
-
-//Lager ny div for det nye elementet du valgt
-var divLag = document.createElement("div");
-
 var count = 1;
 
 //Forandrer farge på body
 forandreFarge.addEventListener("click", (e) =>{
   count++
-
   if(inputBoks != null){
-
     document.body.style.backgroundColor = inputBoks.value.toLowerCase(); 
-
   }else{
     alert("Fargen finnes ikke!");
-
   }
-
-
-
 })
+//---------------------------------------------------------------------------------------------------------------------------
 
-//Valgene du har for elementer du skal lage
+
+//Her lages det nye elementen du vil lage, her blir det appendet, funksjonen blir lagd og andre elementer som knapper og options
 var optionvalues = ["h1", "h2", "h3"]
-
 var select = document.createElement("select");
 select.setAttribute("id", "select1")
 var divSelect = document.createElement("div");
-
-
 //For loop for selve elementet
 for(i=0;i<optionvalues.length;i++){
   var optSelect = document.createElement("option")
   select.appendChild(optSelect)
   optSelect.innerHTML = optionvalues[i]
-
 }
+
+//Lager ny div for det nye elementet du valgt
+var divLag = document.createElement("div");
+
 
 var lagElement = document.createElement("button");
 lagElement.innerHTML = "Enter"
@@ -301,7 +293,7 @@ lagElement.addEventListener("click", (e) =>{
   selectElement = document.querySelector('#select1');
   var nyLagd = document.createElement(selectElement.value)
   nyLagd.innerHTML = lagElementInput.value;
-  document.body.appendChild(nyLagd);
+  divInfo.appendChild(nyLagd);
 
 })
 
@@ -310,12 +302,14 @@ divLag.appendChild(select);
 divLag.appendChild(lagElementInput);
 divLag.appendChild(lagElement);
 
+//----------------------------------------------------------------------------------------------------------------------------
 
+//Appender de siste divene til dokumentet så den vises.
 document.body.appendChild(divFarge);
 document.body.appendChild(divLag);
 
 
-
+//Kjører undersøkelse funksjon for graf osv.
 undersokelse();
 
 
