@@ -215,10 +215,10 @@ document.body.appendChild(divSvar);
 //-----------------------------------------------------------------------------------------------------------------------
 
 
-//Nedenfor her er kode for å lage navn, endre farge og forskjellige elementer. Alt det nedefor er for utvikling oppdraget.
+//Nedenfor her er kode for å lage navn, endre farge og forskjellige elementer. Alt det nedefor er for utvikling oppdraget.----------
 
 
-//Her lages hele funksjonnen for hvordan man skriver inn navn til hvordan navnet displayes ----------------------------------------
+//Her lages hele funksjonnen for hvordan man skriver inn navn til hvordan navnet displayes 
 var divInfo = document.createElement("div");
 var navn = document.createElement("h2");
 navn.innerHTML = "Navn: "
@@ -243,7 +243,7 @@ divInfo.appendChild(enterInput);
 document.body.appendChild(divInfo);
 
 
-//Lager hele fargeseksjonen, div, button, inputbox. Her lages funksjonen og elementene for å endre farge til body-------------
+//Lager hele fargeseksjonen, div, button, inputbox. Her lages funksjonen og elementene for å endre farge til body
 var divFarge = document.createElement("div");
 var forandreFarge = document.createElement("button");
 forandreFarge.innerHTML = "Endre farge"
@@ -272,37 +272,67 @@ forandreFarge.addEventListener("click", (e) =>{
 var optionvalues = ["h1", "h2", "h3"]
 var select = document.createElement("select");
 select.setAttribute("id", "select1")
-var divSelect = document.createElement("div");
-//For loop for selve elementet
+
+
+
+
+
+//Lager ny div for det nye elementet du valgte
+var divLag = document.createElement("div");
+var lagElement = document.createElement("button");
+lagElement.innerHTML = "Enter"
+var lagElementInput = document.createElement("input");
+
 for(i=0;i<optionvalues.length;i++){
   var optSelect = document.createElement("option")
   select.appendChild(optSelect)
   optSelect.innerHTML = optionvalues[i]
 }
 
-//Lager ny div for det nye elementet du valgt
-var divLag = document.createElement("div");
+//Her kan du velge hvor du vil plassere teksten
+var divPosisjon = ["top", "middle", "bottom"]
+
+var posisjonSelect = document.createElement("select");
+posisjonSelect.setAttribute("id", "posisjonSelect")
+
+for(x=0;x<divPosisjon.length;x++){
+  var posisjonOpt = document.createElement("option")
+  posisjonSelect.appendChild(posisjonOpt)
+  posisjonOpt.innerHTML = divPosisjon[x];
+}
+//----------------------------------------
 
 
-var lagElement = document.createElement("button");
-lagElement.innerHTML = "Enter"
-var lagElementInput = document.createElement("input");
+
 
 //Henter inn id til select og lager elementet du vil lage
 lagElement.addEventListener("click", (e) =>{
   selectElement = document.querySelector('#select1');
   var nyLagd = document.createElement(selectElement.value)
   nyLagd.innerHTML = lagElementInput.value;
-  divInfo.appendChild(nyLagd);
+  
+
+  selectPosisjon = document.querySelector('#posisjonSelect');
+  
+  if(selectPosisjon.value == "top"){
+    divInfo.appendChild(nyLagd);
+  }else if(selectPosisjon.value == "middle"){
+    divFarge.appendChild(nyLagd)
+  }else{
+    document.body.appendChild(nyLagd)
+  }
+    
 
 })
 
+
 //Appender alt til divLag
+
+divLag.appendChild(posisjonSelect);
 divLag.appendChild(select);
 divLag.appendChild(lagElementInput);
 divLag.appendChild(lagElement);
 
-//----------------------------------------------------------------------------------------------------------------------------
 
 //Appender de siste divene til dokumentet så den vises.
 document.body.appendChild(divFarge);
