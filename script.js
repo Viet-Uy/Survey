@@ -218,6 +218,8 @@ document.body.appendChild(divSvar);
 //Nedenfor her er kode for å lage navn, endre farge og forskjellige elementer. Alt det nedefor er for utvikling oppdraget.----------
 
 
+
+
 //Her lages hele funksjonnen for hvordan man skriver inn navn til hvordan navnet displayes 
 var divInfo = document.createElement("div");
 var navn = document.createElement("h2");
@@ -240,6 +242,11 @@ enterInput.addEventListener("click",(e) =>{
 
 //Append button i divInfo
 divInfo.appendChild(enterInput);
+
+//Lager en div så det er mulig å plassere et nytt valgt element på. Divven i seg selv er tom og brukes bare for å lage nye elementer, for å sikre seg at brukeren skjønner opplegget og funksjonen.
+var divTop = document.createElement("div");
+document.body.appendChild(divTop);
+
 document.body.appendChild(divInfo);
 
 
@@ -247,10 +254,13 @@ document.body.appendChild(divInfo);
 var divFarge = document.createElement("div");
 var forandreFarge = document.createElement("button");
 forandreFarge.innerHTML = "Endre farge"
+forandreFarge.style.marginTop = "0px"
+forandreFarge.style.marginBottom = "10px"
 var inputBoks = document.createElement("input");
 inputBoks.placeholder = "Skriv farge her";
-var headerFarge = document.createElement("h3")
+var headerFarge = document.createElement("h2")
 headerFarge.innerHTML = "Skriv en farge bakgrunnsfargen din skal endres til"
+headerFarge.style.marginBottom = "20px";
 divFarge.appendChild(headerFarge);
 divFarge.appendChild(inputBoks);
 divFarge.appendChild(forandreFarge);
@@ -273,15 +283,18 @@ var optionvalues = ["h1", "h2", "h3"]
 var select = document.createElement("select");
 select.setAttribute("id", "select1")
 
+var lagHeader = document.createElement("h2");
+lagHeader.innerHTML = "Skriv noe i tekstfeltet og velg posisjon for å lage et nytt HTML element";
 
-
-
+lagHeader.style.marginBottom = "20px";
 
 //Lager ny div for det nye elementet du valgte
 var divLag = document.createElement("div");
 var lagElement = document.createElement("button");
 lagElement.innerHTML = "Enter"
+lagElement.style.marginTop = "0px"
 var lagElementInput = document.createElement("input");
+lagElementInput.placeholder = '"Jeg liker pusekatter"';
 
 for(i=0;i<optionvalues.length;i++){
   var optSelect = document.createElement("option")
@@ -315,7 +328,7 @@ lagElement.addEventListener("click", (e) =>{
   selectPosisjon = document.querySelector('#posisjonSelect');
   
   if(selectPosisjon.value == "top"){
-    divInfo.appendChild(nyLagd);
+    divTop.appendChild(nyLagd);
   }else if(selectPosisjon.value == "middle"){
     divFarge.appendChild(nyLagd)
   }else{
@@ -327,7 +340,7 @@ lagElement.addEventListener("click", (e) =>{
 
 
 //Appender alt til divLag
-
+divLag.appendChild(lagHeader);
 divLag.appendChild(posisjonSelect);
 divLag.appendChild(select);
 divLag.appendChild(lagElementInput);
